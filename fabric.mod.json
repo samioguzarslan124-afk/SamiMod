@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "samimod",
+  "version": "1.0.0",
+  "name": "Tuber",
+  "description": "Gardişim hile hazır hadi iyi trollemeler :3",
+  "authors": ["Sami Bey"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.samibey.cheat.SamiMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  }
+}
