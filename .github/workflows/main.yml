@@ -1,23 +1,28 @@
-name: SamiMod Build
+name: Normal Java Build
 on: [push, pull_request]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Kodu Indir
         uses: actions/checkout@v4
-      - name: Set up JDK 17
+
+      - name: Java Kurulumu
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Gradle
+
+      - name: Derleme (Compile)
         run: |
-          bash gradlew build
-          
-      - name: Upload Artifact
+          mkdir build
+          javac -d build src/main/java/com/samibey/cheat/*.java
+          jar cvfe build/SamiHile.jar com.samibey.cheat.SamiMod -C build .
+
+      - name: Hazir Dosyayi Ver
         uses: actions/upload-artifact@v4
         with:
-          name: SamiMod-Jar
-          path: build/libs/*.jar
+          name: SamiHile-Mod-Dosyasi
+          path: build/SamiHile.jar
           
