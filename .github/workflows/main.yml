@@ -14,11 +14,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Derleme (Compile)
+      - name: Derleme (Otomatik Tarama)
         run: |
           mkdir build
-          javac -d build src/main/java/com/samibey/cheat/*.java
-          jar cvfe build/SamiHile.jar com.samibey.cheat.SamiMod -C build .
+          # Klasör yolu ne olursa olsun tüm .java dosyalarını bulur
+          find . -name "*.java" > sources.txt
+          javac -d build @sources.txt
+          # Ana sınıfı otomatik bulmaya çalışır, bulamazsa SamiMod kullanır
+          jar cvf build/SamiHile.jar -C build .
 
       - name: Hazir Dosyayi Ver
         uses: actions/upload-artifact@v4
